@@ -1,14 +1,14 @@
-# osint-lazy-scripts
-This Repo is for all various scripts that make it easier and quicker to do repetitive tasks related to osint
+#OSINTInstallUpdate Script
 
-If you are not the owner and stupid enough to run the script in this repo without actually going trough the script yourself then you deserve whatever bad happening resulting from it.
+
+This script is pretty much a dumpster-fire, but if you feel like making this script better then please do feel free to contribute, you WILL find many serious problems and issues, but please feel free to raise a issue and i will try get around to fix it sooner or later.
+
+WARNING: THIS SCRIPT WILL VERY LIKELY MESS UP YOU SYSTEM AT THIS CURRENT POINT IN TIME, SO RUN ON TEST SYSTEM LIKE A VM TO FIX ISSUES THAT IT CAUSE BEFORE DEPLOYING IT FOR ACTUAL USE! 
 
 
 
 #######################
 
-
-## OSINTInstallupdate script
 
 Currently things this script do(or attempt to do aleast):
 
