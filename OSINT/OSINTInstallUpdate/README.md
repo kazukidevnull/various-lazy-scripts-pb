@@ -16,7 +16,7 @@ Currently things this script do(or attempt to do aleast):
 
 Installs python3 and pip3(as this script rely on pip3)
 
-also ask if you wan't to update or update then upgrade at the end of the script
+also ask if you want to update or update then upgrade at the end of the script
 
 This script is NOT designed for automatic use, both at start and at the end you will have to interact with the script
 
