@@ -51,7 +51,7 @@ if [ $value -ge 1 ]
 then
 	break;;
 else
-{ pip3 -V || cd /usr/share/
+{ cd /usr/share/
 		curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py || tput setaf 3;echo "[!] ERROR DOWNLOADING get-pip.py, EXITING SCRIPTT"; exit;;
 		python3 get-pip.py || tput setaf 3;echo "[!] ERROR INSTALLING get-pip.py, EXITING SCRIPTT"; exit;;
 		rm get-pip.py || tput setaf 3;echo "[!] ERROR REMOVING get-pip.py, EXITING SCRIPTT"; exit;;
@@ -227,9 +227,9 @@ tput setaf 5;echo "[+] Installing or Updating sn0int..."
 			echo deb http://apt.vulns.sexy stable main | sudo tee /etc/apt/sources.list.d/apt-vulns-sexy.list || tput setaf 3;echo "[!] INSTALL ERROR, SKIPPING INSTALL"; break;;
 			echo deb http://apt.vulns.sexy stable main > /etc/apt/sources.list.d/apt-vulns-sexy.list || tput setaf 3;echo "[!] INSTALL ERROR, SKIPPING INSTALL"; break;;
 			sudo apt update || tput setaf 3;echo "[!] APT UPDATE ERROR, SKIPPING INSTALL"; break;;
-			sudo apt install sn0int || tput setaf 3;echo "[!] INSTALL ERROR, SKIPPING INSTALL"
+			sudo apt install sn0int || tput setaf 3;echo "[!] INSTALL ERROR, SKIPPING INSTALL"; break;;
 } 
-#have no idea what is happening in this install, sn0int install page list one line install for every distro but debian/ubuntu/kali which list this whole shit 
+#have no idea what is happening in this install, sn0int install page list one line install for every distro but debian/ubuntu/kali which list this whole shit , need to fix later
 tput setaf 2;echo "[+] Done."
 
 

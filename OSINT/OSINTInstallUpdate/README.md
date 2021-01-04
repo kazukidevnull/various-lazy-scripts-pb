@@ -24,7 +24,8 @@ This script is NOT designed for automatic use, both at start and at the end you 
 
 (attempts to)Install or upgrades following Tools, some tools have dependencies not yet included in this script or just not plain installing correctly:
 
-# Tools in script
+
+# OSINT Tools in script
 + anonsurf
 + youtube-dl,
 + Twint,
@@ -44,6 +45,12 @@ This script is NOT designed for automatic use, both at start and at the end you 
 + spiderpig,
 + whatsmyname,
 + Wikileaker
+
+# Other tools installed:
+
++ GIT
++ANONSURF
++ PYTHON3/PIP3
 
 ## list of known dependencies for tools in this script
 
