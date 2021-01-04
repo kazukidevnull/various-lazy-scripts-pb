@@ -1,4 +1,4 @@
-#OSINTInstallUpdate Script
+# OSINTInstallUpdate Script
 
 
 This script is pretty much a dumpster-fire, but if you feel like making this script better then please do feel free to contribute, you WILL find many serious problems and issues, but please feel free to raise a issue and i will try get around to fix it sooner or later.
@@ -25,7 +25,7 @@ This script is NOT designed for automatic use, both at start and at the end you 
 (attempts to)Install or upgrades following Tools, some tools have dependencies not yet included in this script or just not plain installing correctly:
 
 
-# OSINT Tools in script
+## OSINT Tools in script
 + anonsurf
 + youtube-dl,
 + Twint,
