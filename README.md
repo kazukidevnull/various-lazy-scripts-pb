@@ -5,4 +5,4 @@
  
  if you want to help then do feel free to look trough the scripts and either push fixes or creating issues tickets and i will get around to it at some point...
  
- also, a warning, if you expect any good scripts in this repo, then you are in the wrong place, as my scripts will more likely then not be classified as dumpsterfires xD
+DISCLAIMER: NONE OF THE CURRENT CODE IN THIS REPO ARE FUNCTIONAL OR CORRECT, I KNOW THERE IS A LOT OF ERRORS AND WRONGNESS IN THE CODES; I HAVE JUST NOT BEEN ABLE TO GET AROUND CORRECT THEM YET AND UNLESS STATED OTHERWISE ARE NOT SAFE TO RUN!; YOU HAVE BEEN WARNED!
