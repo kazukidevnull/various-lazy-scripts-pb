@@ -1,14 +1,14 @@
-# OSINTInstallUpdate Script
+# osint-lazy-scripts
+This Repo is for all various scripts that make it easier and quicker to do repetitive tasks related to osint
 
+If you are not the owner and stupid enough to run the script in this repo without actually going trough the script yourself then you deserve whatever bad happening resulting from it.
 
-This script is pretty much a dumpster-fire, but if you feel like making this script better then please do feel free to contribute, you WILL find many serious problems and issues, but please feel free to raise a issue and i will try get around to fix it sooner or later.
-
-WARNING: THIS SCRIPT WILL VERY LIKELY MESS UP YOU SYSTEM AT THIS CURRENT POINT IN TIME, SO RUN ON TEST SYSTEM LIKE A VM TO FIX ISSUES THAT IT CAUSE BEFORE DEPLOYING IT FOR ACTUAL USE! 
-
-
+DISCLAIMER: NONE OF THE CURRENT CODE IN THIS REPO ARE FUNCTIONAL OR CORRECT, I KNOW THERE IS A LOT OF ERRORS AND WRONGNESS IN THE CODES; I HAVE JUST NOT BEEN ABLE TO GET AROUND CORRECT THEM YET AND UNLESS STATED OTHERWISE ARE NOT SAFE TO RUN!; YOU HAVE BEEN WARNED!
 
 #######################
 
+
+## OSINTInstallupdate script
 
 Currently things this script do(or attempt to do aleast):
 
@@ -24,33 +24,26 @@ This script is NOT designed for automatic use, both at start and at the end you 
 
 (attempts to)Install or upgrades following Tools, some tools have dependencies not yet included in this script or just not plain installing correctly:
 
-
-## OSINT Tools in script
+# Tools in script
 + anonsurf
-+ youtube-dl,
-+ Twint,
-+ LittleBrother,
-+ Phoneinfoga,
-+ TheHarvester,
-+ ExifScan,
-+ DumpsterDiver,
-+ Sherlock,
-+ Infoga,
-+ Metagoofil,
-+ OSINT-Search,
-+ Google-Search,
-+ API-Dnsdumpster,
-+ Stego Toolkit,
-+ sn0int,
-+ spiderpig,
-+ whatsmyname,
++ youtube-dl
++ Twint
++ LittleBrother
++ Phoneinfoga
++ TheHarvester
++ ExifScan
++ DumpsterDiver
++ Sherlock
++ Infoga
++ Metagoofil
++ OSINT-Search
++ Google-Search
++ API-Dnsdumpster
++ Stego Toolkit
++ sn0int
++ spiderpig
++ whatsmyname
 + Wikileaker
-
-# Other tools installed:
-
-+ GIT
-+ANONSURF
-+ PYTHON3/PIP3
 
 ## list of known dependencies for tools in this script
 

@@ -29,7 +29,17 @@ select yn in "Yes" "No"; do
 done
 }
 
+#################
 
+echo "[+] Update + Upgrade System.."
+sudo apt update -qq 
+sudo apt upgrade -qq -y
+#sudo npm install npm@latest -g
+#sudo npm update -g
+
+echo "[+] Upgrading linux version to latest..."
+sudo apt dist-upgrade -qq -y
+sudo apt full-upgrade -qq -y
 
 #################
 
@@ -60,26 +70,49 @@ tput setaf 2;echo "[+] Done."
 
 
 ################
+#NOT REALLY "ESSENTIAL",  MOSTLY  INSTALLED CAUSE MANY SCRIPTS NEED GIT  TO RUN BUT THAT'S STUPID,SO COMMENTED IT OUT FOR NOW AND IINSTEAD JUST TRY #MAKE THE NEEDED SCRIPT USE CURL/GET INSTEAD
 
-tput setaf 5;echo "[+] Installing GIT if not already installed..."
+#tput setaf 5;echo "[+] Installing GIT if not already installed..."
+#{
+#        sudo apt-get install git -y || tput setaf 1; read -p "GIT INSTALL WENT FUCKY WUCKY, EXITING SCRIPT"; exit;;
+#} 
+#tput setaf 2;echo "[+] Done."
+
+
+
+#################
+
+tput setaf 5;echo "[+] Installing anonsurf if not already installed..."
 {
-        sudo apt-get install git -y || tput setaf 1; read -p "GIT INSTALL WENT FUCKY WUCKY, EXITING SCRIPT"; exit;;
-} 
+	if [ -d "/usr/share/kali-anonsurf " ]; then
+	
+		tput setaf 5;echo "kali-anonsurf  EXIST, SKIPPING"; break;;
+	else
+		mkdir /usr/share/kali-anonsurf 
+			cd /usr/share/kali-anonsurf 
+				sudo curl https://github.com/Und3rf10w/kali-anonsurf.git || tput setaf 3;echo "[!] DOWNLOADING FILES FAILED, SKIPPING!"; break;;
+				chmod +x installer.sh || tput setaf 3;echo "[!] CAN NOT CHMOD, SKIPPING"; break;;
+				./installer.sh || tput setaf 3;echo "[!] ERROR RUNNING INSTALLER, SKIPPING"
+	fi
+}
+tput setaf 2;echo "[+] Done."
+#considered making a option to run rest of install script trought anonsurf, but atm that can introduce too many unknown variables, so decided against it for now
+
+#################
+tput setaf 5;echo "[+] Installing or Updating LittleBrother..."
+{
+	if [ -d "/usr/share/LittleBrother" ]; then
+	
+		cd /usr/share/LittleBrother
+        	sudo git pull https://github.com/Lulz3xploit/LittleBrother --rebase
+	else
+		sudo git clone https://github.com/Lulz3xploit/LittleBrother /usr/share/LittleBrother
+	fi
+}
 tput setaf 2;echo "[+] Done."
 
 #################
 
-
-tput setaf 5;echo "[+] Installing anonsurf if not already installed..."
-
-	cd usr/share/ 
-		sudo git clone https://github.com/Und3rf10w/kali-anonsurf.git || tput setaf 3;echo "[!] GIT CLONING FAILED, SKIPPING!"; break;;
-			cd kali-anonsurf || tput setaf 3;echo "[!] CAN NOT ENTER ANONSURF DIR, SKIPPING"; break;;
-				chmod +x installer.sh
-				./installer.sh || tput setaf 3;echo "[!] ERROR RUNNING INSTALLER, SKIPPING"
-#consider making a option to run rest of install script trought anonsurf, but atm that can introduce to many unknown variables, so decided against it for now
-
-#################
 
 tput setaf 5;echo "[+] Installing or Updating youtube-dl..."
 {
@@ -99,9 +132,14 @@ tput setaf 2;echo "[+] Done."
 
 tput setaf 5;echo "[+] Installing or Updating PhoneInfoga..."
 {
-	cd /usr/share/PhoneInfoga || mkdir /usr/share/phoneinfoga 
-			curl -sSL https://raw.githubusercontent.com/sundowndev/PhoneInfoga/master/support/scripts/install || tput setaf 3;echo "[!] GIT CLONING WITH CURL FAILED, SKIPPING INSTALL!"
-} 
+        if [ -d "/usr/share/phoneinfoga" ]; then        
+	
+		cd /usr/share/phoneinfoga
+		sudo git init
+        	sudo git pull https://github.com/sundowndev/PhoneInfoga.git --rebase
+	else
+		sudo git clone https://github.com/sundowndev/PhoneInfoga.git /usr/share/phoneinfoga
+	fi
 tput setaf 2;echo "[+] Done."
 
 ###################
@@ -109,8 +147,8 @@ tput setaf 2;echo "[+] Done."
 tput setaf 5;echo "[+] Installing or Updating theHarvester..."
 {
 	cd /usr/share/
-		git clone https://github.com/laramies/theHarvester || tput setaf 3;echo "[!] GIT CLONING FAILED, SKIPPING INSTALL!"; break;;
-		cd /usr/share/theHarvester
+		curl https://github.com/laramies/theHarvester || tput setaf 3;echo "[!] DOWNLOADING FILES FAILED, SKIPPING INSTALL!"; break;;
+		cd /usr/share/theHarvester|| tput setaf 3;echo "[!] CAN NOT ENTER THEHARVESTER DIR, SKIPPING"; break;;
 			python3 -m pip install -r requirements/base.txt || tput setaf 3;echo "[!] INSTALL REQ ERROR, SKIPPING INSTALL"; break;;
 			python3 theHarvester.py -h || tput setaf 3;echo "[!] INSTALL ERROR, SKIPPING INSTALL"; break;;
 } 
@@ -120,22 +158,27 @@ tput setaf 5;echo "[+] Installing or Updating theHarvester..."
 
 tput setaf 5;echo "[+] Installing or Updating ExifScan..."
 {
-    cd /usr/share/
-		git clone https://github.com/rcook/exifscan.git || tput setaf 3;echo "[!] GIT CLONING WITH CURL FAILED, SKIPPING INSTALL!"; break;;
-		cd /usr/share/exifscan || tput setaf 3;echo "[!] ERROR CHANGING DIR, SKIPPING INSTALL"; break;;
-			python3 -m pip install -r requirements.txt || tput setaf 3;echo "[!] ERROR RUNNING INSTALLER, SKIPPING INSTALL"
-
-} 
+        if [ -d "/usr/share/exifscan" ]; then        
+	
+		cd /usr/share/exifscan
+        	sudo git pull https://github.com/rcook/exifscan.git --rebase
+	else
+		sudo git clone https://github.com/rcook/exifscan /usr/share/exifscan
+	fi
+}
 tput setaf 2;echo "[+] Done."
 
 #####################
 
 tput setaf 5;echo "[+] Installing or Updating DumpsterDiver..."
 {
-    cd /usr/share/
-		sudo git clone https://github.com/securing/DumpsterDiver.git || tput setaf 3;echo "[!] GIT CLONING FAILED, SKIPPING INSTALL!"; break;;
-		cd /usr/share/DumpsterDiver || tput setaf 3;echo "[!] ERROR CHANGING DIR, SKIPPING INSTALL"; break;;
-			python3 -m pip install -r requirements.txt || tput setaf 3;echo "[!] ERROR RUNNING INSTALLER, SKIPPING INSTALL"
+        if [ -d "/usr/share/DumpsterDiver" ]; then        
+	
+		cd /usr/share/DumpsterDiver
+		sudo git pull https://github.com/securing/DumpsterDiver.git --rebase
+	else
+		sudo git clone https://github.com/securing/DumpsterDiver /usr/share/DumpsterDiver
+	fi
 } 
 tput setaf 2;echo "[+] Done."
 
@@ -143,10 +186,14 @@ tput setaf 2;echo "[+] Done."
 
 tput setaf 5;echo "[+] Installing or Updating Sherlock..."
 {
-    cd /usr/share/
-		sudo git clone https://github.com/sherlock-project/sherlock.git || tput setaf 3;echo "[!] GIT CLONING FAILED, SKIPPING INSTALL!"
-			cd sherlock || tput setaf 3;echo "[!] ERROR CHANGING DIR, SKIPPING INSTALL"; break;;
-			python3 -m pip install -r requirements.txt || tput setaf 3;echo "[!] ERROR RUNNING INSTALLER, SKIPPING INSTALL"
+        if [ -d "/usr/share/sherlock" ]; then        
+	
+		cd /usr/share/sherlock
+		sudo git init
+        	sudo git pull https://github.com/sherlock-project/sherlock.git --rebase
+	else
+		sudo git clone https://github.com/sherlock-project/sherlock /usr/share/sherlock
+	fi
 } 
 tput setaf 2;echo "[+] Done."
 
@@ -155,10 +202,13 @@ tput setaf 2;echo "[+] Done."
 
 tput setaf 5;echo "[+] Installing or Updating Infoga..."
 {
-    cd /usr/share/
-		sudo git clone https://github.com/m4ll0k/Infoga.git || tput setaf 3;echo "[!] GIT CLONING FAILED, SKIPPING INSTALL!"; break;;
-			cd /usr/share/Infoga || tput setaf 3;echo "[!] ERROR CHANGING DIR, SKIPPING INSTALL"; break;;
-				python3 -m pip install -r requirements.txt || tput setaf 3;echo "[!] ERROR RUNNING INSTALLER, SKIPPING INSTALL"
+        if [ -d "/usr/share/Infoga" ]; then        
+	
+		cd /usr/share/Infoga
+        	sudo git pull https://github.com/m4ll0k/Infoga.git --rebase
+	else
+		sudo git clone https://github.com/m4ll0k/Infoga /usr/share/Infoga
+	fi
 } 
 tput setaf 2;echo "[+] Done."
 
@@ -166,12 +216,32 @@ tput setaf 2;echo "[+] Done."
 
 tput setaf 5;echo "[+] Installing or Updating Metagoofil..."
 {
-    cd /usr/share/
-		sudo git clone https://github.com/opsdisk/metagoofil.git || tput setaf 3;echo "[!] GIT CLONING FAILED, SKIPPING INSTALL!"; break;;
-			cd Metagoofil || tput setaf 3;echo "[!] ERROR CHANGING DIR, SKIPPING INSTALL"; break;;
-				python3 -m pip install -r requirements.txt || tput setaf 3;echo "[!] ERROR RUNNING INSTALLER, SKIPPING INSTALL"
+
+	if [ -d "/usr/share/metagoofil" ]; then        
+	
+		cd /usr/share/metagoofil
+		sudo git init
+        	sudo git pull https://github.com/opsdisk/metagoofil.git --rebase
+	else
+		sudo git clone https://github.com/opsdisk/metagoofil /usr/share/metagoofil
+	fi
 } 
 tput setaf 2;echo "[+] Done."
+
+##########################
+
+tput setaf 5;echo "[+] Installing or Updating Stego Toolkit..."
+{
+        if [ -d "/usr/share/stego-toolkit" ]; then        
+	
+		cd /usr/share/stego-toolkit
+        	sudo git pull https://github.com/DominicBreuker/stego-toolkit.git --rebase
+	else
+		sudo git clone https://github.com/DominicBreuker/stego-toolkit.git  /usr/share/stego-toolkit
+	fi
+} 
+tput setaf 2;echo "[+] Done."
+
 
 ##########################
 
@@ -180,7 +250,7 @@ tput setaf 2;echo "[+] Done."
 tput setaf 5;echo "[+] Installing or Updating OSINT-Search..."
 {
     cd /usr/share/
-		sudo git clone https://github.com/am0nt31r0/OSINT-Search.git || tput setaf 3;echo "[!] GIT CLONING FAILED, SKIPPING INSTALL!"; break;;
+		sudo curl https://github.com/am0nt31r0/OSINT-Search.git || tput setaf 3;echo "[!] DOWNLOADING FILES FAILED, SKIPPING INSTALL!"; break;;
  			cd /usr/share/OSINT-Search || tput setaf 3;echo "[!] ERROR CHANGING DIR, SKIPPING INSTALL"; break;;
 				python3 -m pip install -r requirements.txt || tput setaf 3;echo "[!] ERROR RUNNING INSTALLER, SKIPPING INSTALL"
 }
@@ -206,30 +276,18 @@ tput setaf 2;echo "[+] Done."
 
 ###########################
 
-tput setaf 5;echo "[+] Installing or Updating Stego Toolkit..."
-{
-	cd /usr/share/
-		sudo git clone https://github.com/DominicBreuker/stego-toolkit.git || tput setaf 3;echo "[!] GIT CLONING FAILED, SKIPPING INSTALL!"; break;;
-		cd /usr/share/stego-toolkit || tput setaf 3;echo "[!] ERROR CHANGING DIR, SKIPPING INSTALL"; break;;
-			python3 -m pip install -r requirements.txt || tput setaf 3;echo "[!] ERROR RUNNING INSTALLER, SKIPPING INSTALL"
-} 
-tput setaf 2;echo "[+] Done."
-
-###########################
-
 
 tput setaf 5;echo "[+] Installing or Updating sn0int..."
 {
-	cd /usr/share/sn0int || mkdir /usr/share/sn0int
+        if [ -d "/usr/share/sn0int" ]; then        
+	
 		cd /usr/share/sn0int
-			apt install debian-keyring || tput setaf 3;echo "[!] INSTALL ERROR, SKIPPING INSTALL"; break;;
-			gpg -a --export --keyring /usr/share/keyrings/debian-maintainers.gpg kpcyrd@archlinux.org | sudo tee /etc/apt/trusted.gpg.d/apt-vulns-sexy.gpg
-			echo deb http://apt.vulns.sexy stable main | sudo tee /etc/apt/sources.list.d/apt-vulns-sexy.list || tput setaf 3;echo "[!] INSTALL ERROR, SKIPPING INSTALL"; break;;
-			echo deb http://apt.vulns.sexy stable main > /etc/apt/sources.list.d/apt-vulns-sexy.list || tput setaf 3;echo "[!] INSTALL ERROR, SKIPPING INSTALL"; break;;
-			sudo apt update || tput setaf 3;echo "[!] APT UPDATE ERROR, SKIPPING INSTALL"; break;;
-			sudo apt install sn0int || tput setaf 3;echo "[!] INSTALL ERROR, SKIPPING INSTALL"; break;;
-} 
-#have no idea what is happening in this install, sn0int install page list one line install for every distro but debian/ubuntu/kali which list this whole shit , need to fix later
+        	sudo git pull https://github.com/kpcyrd/sn0int.git --rebase
+        	sudo cargo install -f --path .
+	else
+		sudo git clone https://github.com/kpcyrd/sn0int /usr/share/sn0int
+	fi
+}  
 tput setaf 2;echo "[+] Done."
 
 
@@ -237,10 +295,14 @@ tput setaf 2;echo "[+] Done."
 
 tput setaf 5;echo "[+] Installing or Updating Spiderpig..."
 {
-    cd /usr/share/
-		sudo git clone https://github.com/hatlord/Spiderpig.git || tput setaf 3;echo "[!] GIT CLONING FAILED, SKIPPING INSTALL!"; break;;
-			cd /usr/share/Spiderpig || tput setaf 3;echo "[!] ERROR CHANGING DIR, SKIPPING INSTALL"; break;;
-#				bundle install || tput setaf 3;echo "[!] ERROR RUNNING INSTALL, SKIPPING INSTALL"
+        if [ -d "/usr/share/Spiderpig" ]; then        
+	
+		cd /usr/share/Spiderpig
+        	sudo git pull https://github.com/hatlord/Spiderpig.git --rebase
+        	bundle install
+	else
+		sudo git clone https://github.com/hatlord/Spiderpig /usr/share/Spiderpig
+	fi
 }
 tput setaf 2;echo "[+] Done."
 
@@ -248,10 +310,13 @@ tput setaf 2;echo "[+] Done."
 
 tput setaf 5;echo "[+] Installing or Updating WhatsMyName..."
 {
-    cd /usr/share/
-		sudo git clone https://github.com/WebBreacher/WhatsMyName.git || tput setaf 3;echo "[!] GIT CLONING FAILED, SKIPPING INSTALL!"; break;;
-		cd /usr/share/WhatsMyName || tput setaf 3;echo "[!] ERROR CHANGING DIR, SKIPPING INSTALL"; break;;
-			python3 -m pip install -r requirements.txt || tput setaf 3;echo "[!] ERROR RUNNING INSTALLER, SKIPPING INSTALL"
+        if [ -d "/usr/share/WhatsMyName" ]; then        
+	
+		cd /usr/share/WhatsMyName
+        	sudo git pull https://github.com/WebBreacher/WhatsMyName.git --rebase
+	else
+		sudo git clone https://github.com/WebBreacher/WhatsMyName /usr/share/WhatsMyName
+	fi
 }
 tput setaf 2;echo "[+] Done."
 
@@ -259,24 +324,40 @@ tput setaf 2;echo "[+] Done."
 
 tput setaf 5;echo "[+] Installing or Updating WikiLeaker..."
 {
-    cd /usr/share/
-		sudo git clone https://github.com/jocephus/WikiLeaker.git || tput setaf 3;echo "[!] GIT CLONING FAILED, SKIPPING INSTALL!"; break;;
+        if [ -d "/usr/share/WikiLeaker" ]; then        
+	
 		cd /usr/share/WikiLeaker
-			python3 -m pip install -U --user -r requirements.txt || tput setaf 3;echo "[!] ERROR RUNNING pip INSTALLER, SKIPPING INSTALL"
+        	sudo git pull https://github.com/jocephus/WikiLeaker.git --rebase
+	else
+		sudo git clone https://github.com/jocephus/WikiLeaker /usr/share/WikiLeaker
+	fi
 }
 tput setaf 2;echo "[+] Done."
 
-#################
+######################
 
-tput setaf 5;echo "Do you wish to update system?(Recommended)"
-tput setaf 5;echo "yes to update, no to decline or upgrade to update as well as running a upgrade"
-select ynu in "Yes" "No" "upgrade"; do
-    case $ynu in
-        Yes ) sudo apt update -y; break;;
-        upgrade ) sudo apt update && upgrade -y; break;;
-        No ) exit;;
-    esac
-done
+tput setaf 5;echo "[+] Installing or Updating OnionSearch..."
+{
+  if [ -d "/usr/share/OnionSearch" ]; then        
+    cd /usr/share/OnionSearch
+    sudo git pull https://github.com/megadose/OnionSearch.git --rebase
+	else
+    sudo git clone https://github.com/megadose/OnionSearch.git /usr/share/OnionSearch
+	fi
+}
+tput setaf 2;echo "[+] Done."
 
-echo "[+] Updating System.."
+###################
+
+#tput setaf 5;echo "Do you wish to update system?(Recommended)"
+#tput setaf 5;echo "yes to update, no to decline or upgrade to update as well as running a upgrade"
+#select ynu in "Yes" "No" "upgrade"; do
+#    case $ynu in
+#        Yes ) sudo apt update -y; break;;
+#        upgrade ) sudo apt update && upgrade -y; break;;
+#        No ) exit;;
+#    esac
+#done
+#
+#echo "[+] Updating System.."
 
