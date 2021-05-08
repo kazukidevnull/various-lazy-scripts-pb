@@ -1,7 +1,7 @@
 # various-lazy-scripts-pb
  Various lazy scripts to make various repeated or tedious tasks easier and faster
 
- currently this repo consist of only the OSINT tool installer and updater script in the OSINT folder, but more will be added as time goes by(hopefully anyway)
+ currently this repo consist of only the OSINT tool installer and updater script in the OSINT folder and "screenchangescript" in the "other -scripts folder, but more will be added as time goes by(hopefully anyway)
  
  if you want to help then do feel free to look trough the scripts and submit PRs...
  
