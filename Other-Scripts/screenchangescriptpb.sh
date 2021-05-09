@@ -34,7 +34,7 @@ done
 
 tput setaf 5;echo "[+]  checking if wayland enabled ..."
 {
-	if [[ -n $printvar | grep WAYLAND ]]; then #no idea if this is right so will likely have to fix it later to actually correct one       
+	if  grep -Fqx "#WaylandEnable=false" /etc/gdm3/custom.conf ; then #no idea if this is right so will likely have to fix it later to actually correct one       
 	
 		tput setaf 3;echo "uhuh, seems you use wayland, wayland make xrandr all fucky wucky, 
 		select yes to continue which will disable wayland and reboot or No to exit script
