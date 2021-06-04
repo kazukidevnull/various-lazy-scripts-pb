@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 tput setaf 5;echo "#############################################################"
 tput setaf 5;echo "# Kazuki OSINT Tools Installer and Updater                  #"
 tput setaf 5;echo "# Attempting to install/update OSINT Tools on Debian system #"

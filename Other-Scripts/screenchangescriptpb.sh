@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 tput setaf 5;echo "#############################################################"
 tput setaf 5;echo "# this script attempts to change display to 1920x1080       				    #"
 tput setaf 5;echo "#which seems to be absent from display option in VMs          			    #"
@@ -70,7 +70,7 @@ tput setaf 5;echo "[+]  checking if wayland enabled ..."
 
 		cvt=$(cvt 1920 1080 | grep 'Modeline' | sed 's/^.*Modeline //')	
 
-		xrandr --newmode $cvt | tee /etc/profile.d/screensize19201080.sh
+		xrandr --newmode $cvt && cat > /etc/profile.d/screensize19201080.sh
 
 	xrandr --addmode Virtual1 1920x1080
 
